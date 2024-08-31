@@ -69,6 +69,17 @@ io.on("connection", (socket) => {
   // Обработка отключения
   socket.on("disconnect", () => {
     console.log("Client disconnected");
+    const roomID = rooms[socket.id];
+    if (roomID) {
+      // check if the admin was the last one to leave the conference
+      if (!io.sockets.adapter.rooms.get(roomID).size) {
+        
+        delete conferences[roomID];
+        io.emit('delete-conference', roomID);
+      }
+    }
+    delete rooms[socket.id];
+  
   });
 });
 
