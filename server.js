@@ -20,6 +20,11 @@ app.use(express.json());
 const rooms = {};
 const conferences = {};
 
+app.get("/", (req, res) => {
+  res.send("Это бэкенд!");
+});
+
+
 app.post("/create-conference", (req, res) => {
   const { roomID, conferenceName } = req.body;
   conferences[roomID] = { name: conferenceName, admin: "Имя администратора" };
