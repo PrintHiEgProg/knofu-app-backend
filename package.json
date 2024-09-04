@@ -1,19 +1,36 @@
 {
-  "name": "conference-app-backend",
+  "name": "webrtc-video-conference",
   "version": "1.0.0",
+  "description": "webrtc video conference example (not using webrtc libraries)",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "vercel-build": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avoup/webrtc-video-conference.git"
+  },
+  "keywords": [
+    "webrtc",
+    "sample",
+    "example",
+    "video",
+    "conference",
+    "tutorial"
+  ],
+  "author": "avoup",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/avoup/webrtc-video-conference/issues"
+  },
+  "homepage": "https://github.com/avoup/webrtc-video-conference#readme",
+  "optionalDependencies": {
+    "nodemon": "^2.0.12"
+  },
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.19.2",
-    "socket.io": "^4.7.5",
-    "vercel": "^37.2.1"
+    "express": "^4.17.1",
+    "socket.io": "^4.1.3"
   }
 }
