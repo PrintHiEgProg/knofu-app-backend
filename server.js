@@ -6,18 +6,30 @@ const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
   cors: { origin: "https://knofu-app.vercel.app" },
 });
+
 const PORT = 3000 || process.env.PORT;
+
 io.on("connection", (socket) => {
   console.log("Connected");
 
+  // Generate a unique room ID for each client
+  const roomId = generateRoomId();
+  socket.join(roomId);
+
   socket.on("message", (message) => {
-    socket.broadcast.emit("message", message);
+    // Broadcast messages only to clients in the same room
+    io.to(roomId).emit("message", message);
   });
 
   socket.on("disconnect", () => {
     console.log("Disconnected");
   });
 });
+
+function generateRoomId() {
+  // Generate a unique room ID using a UUID library or a random string
+  return Math.random().toString(36).substr(2, 9);
+}
 
 function error(err, req, res, next) {
   // log it
